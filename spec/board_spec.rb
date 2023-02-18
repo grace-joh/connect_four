@@ -11,4 +11,12 @@ RSpec.describe Board do
       expect(board.layout.values.flatten.count('*')).to eq(42)
     end
   end
+
+  describe '#print' do
+    it 'prints an empty board' do
+      board = Board.new
+
+      expect{board.print}.to output("A B C D E F G\n\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *").to_stdout
+    end
+  end
 end
