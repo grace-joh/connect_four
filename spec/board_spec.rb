@@ -47,4 +47,34 @@ RSpec.describe Board do
       expect(board.column_free?(:C)).to eq(true)
     end
   end
+
+  describe '#full?' do
+    it 'returns false if on a new Board' do
+      board = Board.new
+
+      expect(board.full?).to eq(false)
+    end
+
+    it 'returns false if board is not full after move' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['X','O','*','*','*','*']
+
+      expect(board.full?).to eq(false)
+    end
+
+    it 'returns true if board is filled with symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['X','O','X','O','X','O'],
+      board.layout[:B] = ['O','X','O','X','O','X'],
+      board.layout[:C] = ['X','O','X','O','X','O'],
+      board.layout[:D] = ['O','X','O','X','O','X'],
+      board.layout[:E] = ['X','O','X','O','X','O'],
+      board.layout[:F] = ['O','X','O','X','O','X'],
+      board.layout[:G] = ['X','O','X','O','X','O']
+
+      expect(board.full?).to eq(true)
+    end
+  end
 end
