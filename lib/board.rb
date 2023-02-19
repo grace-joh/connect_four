@@ -25,4 +25,8 @@ class Board
       index -= 1
     end
   end
+
+  def column_free?(input)
+      @layout[input.to_sym].include?('*')
+  end
 end
