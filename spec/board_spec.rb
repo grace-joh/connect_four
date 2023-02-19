@@ -16,7 +16,7 @@ RSpec.describe Board do
     it 'prints an empty board' do
       board = Board.new
 
-      expect{board.print}.to output("A B C D E F G\n\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *").to_stdout
+      expect { board.print_layout }.to output("A B C D E F G\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n").to_stdout
     end
   end
 end

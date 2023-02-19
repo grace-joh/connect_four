@@ -3,25 +3,25 @@ class Board
 
   def initialize
     @layout = {
-      A: ["*","*","*","*","*","*"],
-      B: ["*","*","*","*","*","*"],
-      C: ["*","*","*","*","*","*"],
-      D: ["*","*","*","*","*","*"],
-      E: ["*","*","*","*","*","*"],
-      F: ["*","*","*","*","*","*"],
-      G: ["*","*","*","*","*","*"]
+      A: ['*','*','*','*','*','*'],
+      B: ['*','*','*','*','*','*'],
+      C: ['*','*','*','*','*','*'],
+      D: ['*','*','*','*','*','*'],
+      E: ['*','*','*','*','*','*'],
+      F: ['*','*','*','*','*','*'],
+      G: ['*','*','*','*','*','*']
     }
   end
 
-  def print
-    puts @layout.keys.join(" ")
+  def print_layout
+    print "#{@layout.keys.join(' ')}\n"
     index = 6
     while index >= 0
       print_array = []
-      @layout.values.each do |column_array|    
+      @layout.values.each do |column_array|
         print_array << column_array[index]
       end
-      puts print_array.join(" ")    
+      print "#{print_array.join(' ')}\n".lstrip
       index -= 1
     end
   end
