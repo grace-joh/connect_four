@@ -1,5 +1,4 @@
 require 'spec_helper'
-# require 'securerandom'
 
 RSpec.describe Computer do
   describe '#initialize' do
@@ -23,9 +22,8 @@ RSpec.describe Computer do
       computer = Computer.new
 
       expect(computer.input).to be_a(String)
-      # allow(SecureRandom).to receive(:input).and_return('Z')
-      # expect(computer.input).to eq('A')  # how to test for other letters  || 'B' || 'C' || 'D' || 'E' || 'F' || 'G'
-      # expect(computer.input).not_to eq('Z')
+      expect(('A'..'G').to_a).to include(computer.input)
+      expect(('H'..'Z').to_a).not_to include(computer.input)
     end
   end
 end

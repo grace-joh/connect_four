@@ -6,6 +6,6 @@ class Computer
   end
 
   def input
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G'].sample(random: SecureRandom)
+    ('A'..'G').to_a.sample
   end
 end
