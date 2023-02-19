@@ -7,7 +7,6 @@ RSpec.describe Computer do
 
       expect(computer).to be_a(Computer)
       expect(computer.symbol).to eq('O')
-      expect(computer.input).to be_nil
     end
 
     it 'can initialize another object' do
@@ -15,7 +14,16 @@ RSpec.describe Computer do
 
       expect(computer2).to be_a(Computer)
       expect(computer2.symbol).to eq('O')
-      expect(computer2.input).to be_nil
+    end
+  end
+
+  describe '#input' do
+    it 'returns a letter from A to G randomly' do
+      computer = Computer.new
+
+      expect(computer.input).to be_a(String)
+      expect(('A'..'G').to_a).to include(computer.input)
+      expect(('H'..'Z').to_a).not_to include(computer.input)
     end
   end
 end
