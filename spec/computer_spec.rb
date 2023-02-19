@@ -24,7 +24,7 @@ RSpec.describe Computer do
 
       expect(computer.input).to be_a(String)
       # allow(SecureRandom).to receive(:input).and_return('Z')
-      # expect(computer.input).to eq('A' || 'B' || 'C' || 'D' || 'E' || 'F' || 'G')
+      # expect(computer.input).to eq('A')  # how to test for other letters  || 'B' || 'C' || 'D' || 'E' || 'F' || 'G'
       # expect(computer.input).not_to eq('Z')
     end
   end
