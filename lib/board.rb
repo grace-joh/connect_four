@@ -1,5 +1,5 @@
 class Board
-  attr_reader :layout 
+  attr_reader :layout
 
   def initialize
     @layout = {
@@ -27,6 +27,10 @@ class Board
   end
 
   def column_free?(input)
-      @layout[input.to_sym].include?('*')
+    @layout[input.to_sym].include?('*')
+  end
+
+  def full?
+    !@layout.values.flatten.include?('*')
   end
 end
