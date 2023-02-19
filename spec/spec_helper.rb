@@ -1,2 +1,6 @@
 require 'rspec'
+require './lib/computer'
+require './lib/player'
 require './lib/board'
+require './lib/turn'
+require './lib/game'
