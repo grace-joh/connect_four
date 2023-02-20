@@ -41,4 +41,18 @@ class Board
     end
     win
   end
+
+  def horizontal_win?
+    win = false
+    rows = [[], [], [], [], [], []]
+    @layout.each_value do |column_array|
+      column_array.each_with_index do |space, index|
+        rows[index] << space
+      end
+    end
+    rows.each do |row|
+      win = true if row.each_cons(4).any? { |symbol| symbol.uniq.size == 1}
+    end
+    win
+  end
 end
