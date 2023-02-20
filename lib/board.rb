@@ -69,8 +69,8 @@ class Board
     for move_up in 0..2
       for move_right in 0..3
         single_diagonal = []
-        for key_index in 0..3
-          single_diagonal << @layout[@layout.keys[key_index + move_right]][key_index + move_up]
+        for start_index in 0..3
+          single_diagonal << @layout[@layout.keys[start_index + move_right]][start_index + move_up]
         end
         diagonal_up_arrays << single_diagonal
       end
