@@ -33,4 +33,12 @@ class Board
   def full?
     !@layout.values.flatten.include?('*')
   end
+
+  def vertical_win?(symbol)
+    win = false
+    @layout.values.each do |column_array|
+      win = true if column_array.each_cons(4).any? {|symbol| symbol.uniq.size == 1}
+    end
+    win
+  end
 end
