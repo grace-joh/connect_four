@@ -82,13 +82,13 @@ RSpec.describe Board do
     it 'returns true if column has four consecutive X symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X','X','X','X','O','O'],
-      board.layout[:B] = ['X','X','X','X','O','X'],
-      board.layout[:C] = ['X','O','X','X','X','X'],
-      board.layout[:D] = ['O','O','X','X','X','X'],
-      board.layout[:E] = ['X','X','X','X','O','O'],
-      board.layout[:F] = ['O','X','X','X','X','O'],
-      board.layout[:G] = ['X','X','X','X','O','O']
+      board.layout[:A] = ['*','*','*','*','*','*'],
+      board.layout[:B] = ['*','*','*','*','*','*'],
+      board.layout[:C] = ['*','*','*','*','*','*'],
+      board.layout[:D] = ['*','*','*','*','*','*'],
+      board.layout[:E] = ['*','*','*','*','*','*'],
+      board.layout[:F] = ['*','*','*','*','*','*'],
+      board.layout[:G] = ['X','X','X','X','*','*']
 
       expect(board.vertical_win?('X')).to eq(true)
     end
@@ -110,13 +110,13 @@ RSpec.describe Board do
     it 'returns true if column has four consecutive O symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X','X','O','O','O','O'],
-      board.layout[:B] = ['O','O','O','O','X','X'],
-      board.layout[:C] = ['O','O','O','O','X','X'],
-      board.layout[:D] = ['O','O','O','O','X','O'],
-      board.layout[:E] = ['X','O','O','O','O','X'],
-      board.layout[:F] = ['O','X','O','O','O','O'],
-      board.layout[:G] = ['O','O','O','O','X','O']
+      board.layout[:A] = ['*','*','*','*','*','*'],
+      board.layout[:B] = ['*','*','*','*','*','*'],
+      board.layout[:C] = ['*','*','*','*','*','*'],
+      board.layout[:D] = ['*','*','*','*','*','*'],
+      board.layout[:E] = ['*','*','*','*','*','*'],
+      board.layout[:F] = ['*','*','*','*','*','*'],
+      board.layout[:G] = ['O','O','O','O','*','*']
 
       expect(board.vertical_win?('O')).to eq(true)
     end
