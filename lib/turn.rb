@@ -10,4 +10,26 @@ class Turn
     next_open_space = @board.layout[input.to_sym].find_index('*')
     @board.layout[input.to_sym][next_open_space] = player.symbol
   end
+
+  def move(player)
+    if player.class != Computer
+      input = nil
+      loop do
+        input = $stdin.gets.chomp.upcase 
+        if !('A'..'G').to_a.include?(input) 
+          puts 'invalid input! try again: A-G'
+        elsif !@board.column_free?(input)
+          puts 'That is full! try again'
+        else
+          break
+        end
+      end
+    else 
+      input = player.input
+    end
+    update_board(player, input)
+    system('clear')
+    @board.print_layout
+    @winner = player if @board.win?(player.symbol)
+  end
 end
