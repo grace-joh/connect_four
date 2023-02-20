@@ -13,15 +13,21 @@ class Board
     }
   end
 
+  def rows
+    rows = [[], [], [], [], [], []]
+    @layout.each_value do |column_array|
+      column_array.each_with_index do |space, index|
+        rows[index] << space
+      end
+    end
+    rows
+  end
+
   def print_layout
     print "#{@layout.keys.join(' ')}\n"
-    index = 6
+    index = 5
     while index >= 0
-      print_array = []
-      @layout.values.each do |column_array|
-        print_array << column_array[index]
-      end
-      print "#{print_array.join(' ')}\n".lstrip
+      print "#{rows[index].join(' ')}\n".lstrip
       index -= 1
     end
   end
@@ -44,12 +50,6 @@ class Board
 
   def horizontal_win?(symbol)
     win = false
-    rows = [[], [], [], [], [], []]
-    @layout.each_value do |column_array|
-      column_array.each_with_index do |space, index|
-        rows[index] << space
-      end
-    end
     rows.each do |row|
       win = true if row.each_cons(4).any? { |element, next_element| element == symbol && next_element == symbol }
     end

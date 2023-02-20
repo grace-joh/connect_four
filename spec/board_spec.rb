@@ -12,6 +12,16 @@ RSpec.describe Board do
     end
   end
 
+  describe '#rows' do
+    it 'creates an array of row arrays' do
+      board = Board.new
+
+      expect(board.rows).to be_an(Array)
+      expect(board.rows).to all(be_an(Array))
+      expect(board.rows.flatten).to all(eq('*'))
+    end
+  end
+
   describe '#print' do
     it 'prints an empty board' do
       board = Board.new
