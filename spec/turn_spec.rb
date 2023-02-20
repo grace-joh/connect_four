@@ -60,4 +60,22 @@ RSpec.describe Turn do
       expect(@board.layout[:B]).to eq(['X', '*', '*', '*', '*', '*'])
     end
   end
+
+  describe '#move' do
+    it 'winner is nil if move does not win' do
+      user = Player.new
+      computer = Computer.new
+      turn = Turn.new(@board)
+
+      turn.move(user)
+
+      expect(turn.winner).to eq(nil)
+    end
+
+    it 'player is the winner if players move wins' do
+    end
+
+    it 'computer is the winner if computers move wins' do
+    end
+  end
 end
