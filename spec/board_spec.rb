@@ -148,21 +148,21 @@ RSpec.describe Board do
       board.layout[:F] = ['X', 'O', '*', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
-      expect(board.horizontal_win?).to eq(true)
+      expect(board.horizontal_win?('X')).to eq(true)
     end
 
     it 'returns false if row does not have four X symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X', 'O', 'X', 'O', 'X', 'O']
-      board.layout[:B] = ['O', 'X', 'O', 'X', 'O', 'X']
-      board.layout[:C] = ['X', 'O', 'X', 'O', 'X', 'O']
-      board.layout[:D] = ['O', 'X', 'O', 'X', 'O', 'X']
-      board.layout[:E] = ['X', 'O', 'X', 'O', 'X', 'O']
-      board.layout[:F] = ['O', 'X', 'O', 'X', 'O', 'X']
-      board.layout[:G] = ['X', 'O', 'X', 'O', 'X', 'O']
+      board.layout[:A] = ['X', 'O', 'X', 'O', 'X', '*']
+      board.layout[:B] = ['O', 'X', 'O', 'X', 'O', '*']
+      board.layout[:C] = ['X', 'O', 'X', 'O', 'X', '*']
+      board.layout[:D] = ['O', 'X', 'O', 'X', 'O', '*']
+      board.layout[:E] = ['X', 'O', 'X', 'O', 'X', '*']
+      board.layout[:F] = ['O', 'X', 'O', 'X', 'O', '*']
+      board.layout[:G] = ['X', 'O', 'X', 'O', 'X', '*']
 
-      expect(board.horizontal_win?).to eq(false)
+      expect(board.horizontal_win?('X')).to eq(false)
     end
 
     it 'returns true if row has four consecutive O symbols' do
@@ -176,7 +176,7 @@ RSpec.describe Board do
       board.layout[:F] = ['X', 'X', 'X', '*', '*', '*']
       board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
 
-      expect(board.horizontal_win?).to eq(true)
+      expect(board.horizontal_win?('O')).to eq(true)
     end
 
     it 'returns false if row does not have four consecutive O symbols' do
@@ -190,7 +190,7 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'X', 'O', 'X', 'O', 'X']
       board.layout[:G] = ['X', 'O', 'X', 'O', 'X', 'O']
 
-      expect(board.horizontal_win?).to eq(false)
+      expect(board.horizontal_win?('O')).to eq(false)
     end
   end
 end

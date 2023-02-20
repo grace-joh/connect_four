@@ -42,7 +42,7 @@ class Board
     win
   end
 
-  def horizontal_win?
+  def horizontal_win?(symbol)
     win = false
     rows = [[], [], [], [], [], []]
     @layout.each_value do |column_array|
@@ -51,7 +51,7 @@ class Board
       end
     end
     rows.each do |row|
-      win = true if row.each_cons(4).any? { |symbol| symbol.uniq.size == 1}
+      win = true if row.each_cons(4).any? { |element, next_element| element == symbol && next_element == symbol }
     end
     win
   end
