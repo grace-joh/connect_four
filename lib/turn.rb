@@ -12,14 +12,18 @@ class Turn
   end
 
   def move(player)
+    input = nil   
     if player.class != Computer
-      input = nil
       loop do
         input = $stdin.gets.chomp.upcase
         break if valid?(input)
+        input
       end
     else
-      input = player.input until @board.column_free?(input)
+      loop do
+        input = player.input 
+        break input if @board.column_free?(input)
+      end
     end
     update_board(player, input)
     system('clear')
