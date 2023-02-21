@@ -45,7 +45,14 @@ class Game
   end
 
   def take_turns
-
+    loop do
+      players.each do |player|
+        output_turn(player)
+        turn.move(player)
+        break unless @winner.nil?
+      end
+      break if @turn.board.full? || !@winner.nil?
+    end
   end
 
   def output_turn(player)
