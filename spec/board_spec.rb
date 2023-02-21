@@ -216,13 +216,13 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', '*', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
-      expect(board.diagonal_up_win?('X')).to eq(false)
-      expect(board.diagonal_up_win?('O')).to eq(false)
+      expect(board.diagonal_win?('X')).to eq(false)
+      expect(board.diagonal_win?('O')).to eq(false)
     end
 
     it 'returns true if there are upward diagonally consecutive player symbols' do
       board = Board.new
-      # refactor below later
+
       board.layout[:A] = ['O', '*', '*', '*', '*', '*']
       board.layout[:B] = ['O', '*', '*', '*', '*', '*']
       board.layout[:C] = ['O', '*', '*', '*', '*', '*']
@@ -231,12 +231,12 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
 
-      expect(board.diagonal_up_win?('X')).to eq(true)
+      expect(board.diagonal_win?('X')).to eq(true)
     end
 
     it 'returns true if there are downard diagonally consecutive player symbols' do
       board = Board.new
-      # refactor below later
+
       board.layout[:A] = ['X', 'O', '*', '*', '*', '*']
       board.layout[:B] = ['X', 'X', 'O', 'X', '*', '*']
       board.layout[:C] = ['O', 'O', 'X', '*', '*', '*']
@@ -250,7 +250,7 @@ RSpec.describe Board do
 
     it 'returns true if there are upward diagonally consecutive computer symbols' do
       board = Board.new
-      # refactor below later
+
       board.layout[:A] = ['O', 'X', '*', '*', '*', '*']
       board.layout[:B] = ['O', 'X', '*', '*', '*', '*']
       board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
@@ -259,12 +259,12 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'X', 'O', 'O', '*', '*']
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
-      expect(board.diagonal_up_win?('O')).to eq(true)
+      expect(board.diagonal_win?('O')).to eq(true)
     end
 
     it 'returns true if there are downward diagonally consecutive computer symbols' do
       board = Board.new
-      # refactor below later
+
       board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
       board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
       board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
@@ -273,9 +273,8 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
 
-      expect(board.diagonal_down_win?('O')).to eq(true)
+      expect(board.diagonal_win?('O')).to eq(true)
     end
-  end
   end
 
   describe '#diagonal_arrays' do
