@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe Turn do
-  before(:each) do
-    @board = Board.new
-  end
-
   describe '#initialize' do
     it 'exists' do
-      turn = Turn.new(@board)
+      turn = Turn.new
 
       expect(turn).to be_a(Turn)
       expect(turn.board).to be_a(Board)
@@ -15,7 +11,7 @@ RSpec.describe Turn do
     end
 
     it 'can initialize another turn' do
-      turn2 = Turn.new(@board)
+      turn2 = Turn.new
 
       expect(turn2).to be_a(Turn)
       expect(turn2.board).to be_a(Board)
@@ -26,7 +22,7 @@ RSpec.describe Turn do
   describe '#update_board' do
     it "adds  the player's piece to the column the player chooses" do
       player = Player.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
 
@@ -36,7 +32,7 @@ RSpec.describe Turn do
     it 'adds a second piece to the column the player chooses' do
       player = Player.new
       computer = Computer.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
       input = 'A'
@@ -48,7 +44,7 @@ RSpec.describe Turn do
     it 'can add a piece to another column the player chooses' do
       user = Player.new
       computer = Computer.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       input = 'A'
       turn.update_board(user, input)
       input = 'A'
@@ -65,7 +61,7 @@ RSpec.describe Turn do
     it 'winner is nil if move does not win' do
       user = Player.new
       computer = Computer.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       turn.move(user)
       turn.move(computer)
 
@@ -74,7 +70,7 @@ RSpec.describe Turn do
 
     it 'player is the winner if players move wins' do
       user = Player.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       @board.layout[:B] = ['X','*','*','*','*','*']
       @board.layout[:C] = ['X','*','*','*','*','*']
       @board.layout[:D] = ['X','*','*','*','*','*']
@@ -85,7 +81,7 @@ RSpec.describe Turn do
 
     it 'computer is the winner if computers move wins' do
       computer = Computer.new
-      turn = Turn.new(@board)
+      turn = Turn.new
       @board.layout[:A] = ['O','O','O','*','*','*']
       @board.layout[:B] = ['O','O','O','*','*','*']
       @board.layout[:C] = ['O','O','O','*','*','*']
@@ -101,14 +97,14 @@ RSpec.describe Turn do
 
   describe '#valid?' do
     it 'returns false if the input is not from A to G' do
-      turn = Turn.new(@board)
+      turn = Turn.new
       input = 'z'
 
       expect(turn.valid?(input)).to eq(false)
     end
 
     it 'returns false if the input column is full' do
-      turn = Turn.new(@board)
+      turn = Turn.new
       @board.layout[:G] = ['O','O','O','O','O','O']
       input = 'G'
 
@@ -116,7 +112,7 @@ RSpec.describe Turn do
     end
 
     it 'returns true if input is valid' do
-      turn = Turn.new(@board)
+      turn = Turn.new
       input = 'A'
 
       expect(turn.valid?(input)).to eq(true)
