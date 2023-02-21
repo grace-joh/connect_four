@@ -22,4 +22,27 @@ RSpec.describe Game do
       expect(@game.players.last).to be_a(Computer)
     end
   end
+
+  # describe '#play' do
+  #   it 'runs the game' do
+  #   end
+  # end
+
+  # describe '#output_start' do
+  #   it 'outputs game title and instructions to start' do
+  #     expect { @game.output_start }.to output(' ').to_stdout
+  #   end
+  # end
+
+  describe '#output_goodbye' do
+    it 'says bye' do
+      expect { @game.output_goodbye }.to output('Bye!').to_stdout
+    end
+  end
+
+  describe '#output_welcome' do
+    it 'says welcome and prints an empty board' do
+      expect { @game.output_welcome }.to output("Welcome to Connect 4!\nA B C D E F G\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n").to_stdout
+    end
+  end
 end
