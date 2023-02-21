@@ -66,16 +66,60 @@ RSpec.describe Turn do
       user = Player.new
       computer = Computer.new
       turn = Turn.new(@board)
-
       turn.move(user)
+      turn.move(computer)
 
       expect(turn.winner).to eq(nil)
     end
 
     it 'player is the winner if players move wins' do
+      user = Player.new
+      turn = Turn.new(@board)
+      @board.layout[:B] = ['X','*','*','*','*','*']
+      @board.layout[:C] = ['X','*','*','*','*','*']
+      @board.layout[:D] = ['X','*','*','*','*','*']
+      turn.move(user) # when user input is A or E
+
+      expect(turn.winner).to eq(user)
     end
 
     it 'computer is the winner if computers move wins' do
+      computer = Computer.new
+      turn = Turn.new(@board)
+      @board.layout[:A] = ['O','O','O','*','*','*']
+      @board.layout[:B] = ['O','O','O','*','*','*']
+      @board.layout[:C] = ['O','O','O','*','*','*']
+      @board.layout[:D] = ['*','*','*','*','*','*']
+      @board.layout[:E] = ['O','O','O','*','*','*']
+      @board.layout[:F] = ['O','O','O','*','*','*']
+      @board.layout[:G] = ['O','O','O','*','*','*']
+      turn.move(computer)
+
+      expect(turn.winner).to eq(computer)
+    end
+  end
+
+  describe '#valid?' do
+    it 'returns false if the input is not from A to G' do
+      turn = Turn.new(@board)
+      input = 'z'
+
+      expect(turn.valid?(input)).to eq(false)
+    end
+
+    it 'returns false if the input column is full' do
+      turn = Turn.new(@board)
+      @board.layout[:G] = ['O','O','O','O','O','O']
+      input = 'G'
+
+      expect(turn.valid?(input)).to eq(false)
+    end
+
+    it 'returns true if input is valid' do
+      turn = Turn.new(@board)
+      input = 'A'
+
+      expect(turn.valid?(input)).to eq(true)
     end
   end
 end
