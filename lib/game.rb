@@ -56,7 +56,13 @@ class Game
   end
 
   def output_turn(player)
-
+    if player.instance_of?(Player)
+      puts "It's your turn."
+      puts 'Choose a column from A to G'
+    else
+      puts "It's the computer's turn."
+      sleep 2
+    end
   end
 
   def output_winner
