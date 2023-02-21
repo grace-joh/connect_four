@@ -272,7 +272,7 @@ RSpec.describe Board do
   end
 
   describe '#diagonal_down_win?' do
-    it 'returns false if there is no diagonally consecutive symbols' do
+    it 'returns false if no diagonally consecutive symbols' do
       board = Board.new
       # refactor below later
       board.layout[:A] = ['O', '*', '*', '*', '*', '*']
