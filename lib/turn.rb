@@ -15,21 +15,27 @@ class Turn
     if player.class != Computer
       input = nil
       loop do
-        input = $stdin.gets.chomp.upcase 
-        if !('A'..'G').to_a.include?(input) 
-          puts 'invalid input! try again: A-G'
-        elsif !@board.column_free?(input)
-          puts 'That is full! try again'
-        else
-          break
-        end
+        input = $stdin.gets.chomp.upcase
+        break if valid?(input)
       end
-    else 
+    else
       input = player.input
     end
     update_board(player, input)
     system('clear')
     @board.print_layout
     @winner = player if @board.win?(player.symbol)
+  end
+
+  def valid?(input)
+    valid = false
+    if !('A'..'G').to_a.include?(input)
+      puts 'invalid input! try again: A-G'
+    elsif !@board.column_free?(input)
+      puts "Column #{input} is full! try again"
+    else
+      valid = true
+    end
+    valid
   end
 end
