@@ -40,7 +40,7 @@ class Board
     !@layout.values.flatten.include?('*')
   end
 
-  def win?
+  def win?(symbol)
     vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
   end
 
