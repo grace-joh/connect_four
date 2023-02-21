@@ -220,7 +220,7 @@ RSpec.describe Board do
       expect(board.diagonal_up_win?('O')).to eq(false)
     end
 
-    it 'returns true if there are diagonally consecutive player symbols' do
+    it 'returns true if there are upward diagonally consecutive player symbols' do
       board = Board.new
       # refactor below later
       board.layout[:A] = ['O', '*', '*', '*', '*', '*']
@@ -234,7 +234,21 @@ RSpec.describe Board do
       expect(board.diagonal_up_win?('X')).to eq(true)
     end
 
-    it 'returns true if there are diagonally consecutive computer symbols' do
+    it 'returns true if there are downard diagonally consecutive player symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', 'X', '*', '*']
+      board.layout[:C] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:D] = ['O', 'X', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'O', '*', '*', '*']
+      board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
+
+      expect(board.diagonal_down_win?('X')).to eq(true)
+    end    
+
+    it 'returns true if there are upward diagonally consecutive computer symbols' do
       board = Board.new
       # refactor below later
       board.layout[:A] = ['O', 'X', '*', '*', '*', '*']
@@ -248,6 +262,8 @@ RSpec.describe Board do
       expect(board.diagonal_up_win?('O')).to eq(true)
     end
   end
+
+
 
   describe '#diagonal_arrays' do
     it 'builds an array of arrays of all four consecutive diagonal spaces' do
@@ -291,20 +307,6 @@ RSpec.describe Board do
 
       expect(board.diagonal_down_win?('X')).to eq(false)
       expect(board.diagonal_down_win?('O')).to eq(false)
-    end
-
-    it 'returns true if there are diagonally consecutive player symbols' do
-      board = Board.new
-      # refactor below later
-      board.layout[:A] = ['X', 'O', '*', '*', '*', '*']
-      board.layout[:B] = ['X', 'X', 'O', 'X', '*', '*']
-      board.layout[:C] = ['O', 'O', 'X', '*', '*', '*']
-      board.layout[:D] = ['O', 'X', '*', '*', '*', '*']
-      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
-      board.layout[:F] = ['O', 'O', 'O', '*', '*', '*']
-      board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
-
-      expect(board.diagonal_down_win?('X')).to eq(true)
     end
 
     it 'returns true if there are diagonally consecutive computer symbols' do
