@@ -323,5 +323,33 @@ RSpec.describe Board do
       board.layout[:F] = ['O','X','O','X','O','X']
       board.layout[:G] = ['X','O','X','O','X','O']
     end
+
+    it 'returns true if player wins with vertical' do
+      board = Board.new
+      board.layout[:A] = ['*','*','*','*','*','*']
+      board.layout[:B] = ['*','*','*','*','*','*']
+      board.layout[:C] = ['*','*','*','*','*','*']
+      board.layout[:D] = ['*','*','*','*','*','*']
+      board.layout[:E] = ['*','*','*','*','*','*']
+      board.layout[:F] = ['O','O','O','*','*','*']
+      board.layout[:G] = ['X','X','X','X','*','*']
+
+      expect(board.win?('X')).to eq(true)
+      expect(board.win?('O')).to eq(false)
+    end
+
+    it 'returns true if player wins with horizontal' do
+      board = Board.new
+      board.layout[:A] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'X', 'X', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
+
+      expect(board.win?('X')).to eq(true)
+      expect(board.win?('O')).to eq(false)
+    end
   end
 end
