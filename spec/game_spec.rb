@@ -57,7 +57,6 @@ RSpec.describe Game do
     end
 
     it 'alerts the user that it is the computers turn' do
-      computer = Computer.new
       expect { @game.output_turn(@game.players.last) }.to output("It's the computer's turn.\n").to_stdout
     end
   end
