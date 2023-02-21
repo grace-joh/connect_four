@@ -77,4 +77,26 @@ class Board
     end
     diagonal_up_arrays
   end
+
+  def diagonal_down_win?(symbol)
+    win = false
+    diagonal_down_arrays.each do |diagonal|
+      win = true if diagonal.all?(symbol)
+    end
+    win
+  end
+
+  def diagonal_down_arrays
+    diagonal_down_arrays = []
+    for move_up in 0..2
+      for move_right in 0..3
+        single_diagonal = []
+        for start_index in 0..3
+          single_diagonal << @layout[@layout.keys[start_index + move_right]][start_index + move_up]
+        end
+        diagonal_down_arrays << single_diagonal
+      end
+    end
+    diagonal_down_arrays
+  end
 end
