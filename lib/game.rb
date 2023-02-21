@@ -23,11 +23,19 @@ class Game
   end
 
   def output_start
-
+    system('clear')
+    puts File.read('connect_four.txt')
+    loop do
+      puts 'Enter S to start or Q to quit.'
+      input = $stdin.gets.chomp.upcase
+      output_goodbye if input == 'Q'
+      break if input == 'S'
+    end
   end
 
   def output_goodbye
-
+    system('clear')
+    abort('Bye!')
   end
 
   def output_welcome
@@ -47,6 +55,6 @@ class Game
   end
 
   def output_play_again
-    
+
   end
 end
