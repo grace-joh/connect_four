@@ -7,4 +7,8 @@ class Game
     @turn = Turn.new
     @winner = @turn.winner
   end
+
+  def players
+    [@player1, @player2]
+  end
 end
