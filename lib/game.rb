@@ -1,5 +1,6 @@
 class Game
-  attr_reader :player1, :player2, :turn, :winner
+  attr_reader :player1, :player2, :turn
+  attr_accessor :winner
 
   def initialize
     @player1 = Player.new
@@ -66,10 +67,16 @@ class Game
   end
 
   def output_winner
-
+    if winner.instance_of?(Player)
+      puts 'You win!!!'
+    elsif winner.instance_of?(Computer)
+      puts 'You lose :('
+    else
+      puts 'This game was a draw.'
+    end
   end
 
   def output_play_again
-
+    puts 'Play again?'
   end
 end
