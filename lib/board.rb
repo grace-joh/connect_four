@@ -40,6 +40,14 @@ class Board
     !@layout.values.flatten.include?('*')
   end
 
+  def win?
+    if vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
+      true
+    else 
+      false
+    end
+  end
+
   def vertical_win?(symbol)
     win = false
     @layout.values.each do |column_array|
@@ -59,7 +67,7 @@ class Board
   def diagonal_win?(symbol)
     win = false
     diagonal_arrays.each do |diagonal|
-      win = true if diagonal.all?(symbol)
+      win = true if diagonal == symbol
     end
     win
   end
