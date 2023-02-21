@@ -39,7 +39,9 @@ class Game
   end
 
   def output_welcome
-
+    system('clear')
+    puts 'Welcome to Connect 4!'
+    @turn.board.print_layout
   end
 
   def take_turns
