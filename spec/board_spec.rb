@@ -204,7 +204,7 @@ RSpec.describe Board do
     end
   end
 
-  describe '#diagonal_up_win?' do
+  describe '#diagonal_win?' do
     it 'returns false if there is no diagonally consecutive symbols' do
       board = Board.new
       # refactor below later
@@ -220,7 +220,7 @@ RSpec.describe Board do
       expect(board.diagonal_up_win?('O')).to eq(false)
     end
 
-    it 'returns true if there is are diagonally consecutive player symbols' do
+    it 'returns true if there are diagonally consecutive player symbols' do
       board = Board.new
       # refactor below later
       board.layout[:A] = ['O', '*', '*', '*', '*', '*']
