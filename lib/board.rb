@@ -41,11 +41,7 @@ class Board
   end
 
   def win?
-    if vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
-      true
-    else 
-      false
-    end
+    vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
   end
 
   def vertical_win?(symbol)
