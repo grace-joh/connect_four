@@ -61,4 +61,30 @@ RSpec.describe Game do
       expect { @game.output_turn(@game.players.last) }.to output("It's the computer's turn.\n").to_stdout
     end
   end
+
+  describe '#output_winner' do
+    it 'alerts the user if they win' do
+      @game.winner = @game.players.first
+
+      expect { @game.output_winner }.to output("You win!!!\n").to_stdout
+    end
+
+    it 'alerts the user if they lose' do
+      @game.winner = @game.players.last
+
+      expect { @game.output_winner }.to output("You lose :(\n").to_stdout
+    end
+
+    it 'alerts the user if the game ends with no winner' do
+      @game.winner = nil
+
+      expect { @game.output_winner }.to output("This game was a draw.\n").to_stdout
+    end
+  end
+
+  describe '#output_play_again' do
+    it 'ask the user if they want to play again' do
+      expect { @game.output_play_again }.to output("Play again?\n").to_stdout
+    end
+  end
 end
