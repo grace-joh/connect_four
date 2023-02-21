@@ -204,7 +204,7 @@ RSpec.describe Board do
     end
   end
 
-  describe '#diagonal_up_win?' do
+  describe '#diagonal_win?' do
     it 'returns false if there is no diagonally consecutive symbols' do
       board = Board.new
       # refactor below later
@@ -216,13 +216,13 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', '*', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
-      expect(board.diagonal_up_win?('X')).to eq(false)
-      expect(board.diagonal_up_win?('O')).to eq(false)
+      expect(board.diagonal_win?('X')).to eq(false)
+      expect(board.diagonal_win?('O')).to eq(false)
     end
 
-    it 'returns true if there is are diagonally consecutive player symbols' do
+    it 'returns true if there are upward diagonally consecutive player symbols' do
       board = Board.new
-      # refactor below later
+
       board.layout[:A] = ['O', '*', '*', '*', '*', '*']
       board.layout[:B] = ['O', '*', '*', '*', '*', '*']
       board.layout[:C] = ['O', '*', '*', '*', '*', '*']
@@ -231,12 +231,26 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
 
-      expect(board.diagonal_up_win?('X')).to eq(true)
+      expect(board.diagonal_win?('X')).to eq(true)
     end
 
-    it 'returns true if there is are diagonally consecutive computer symbols' do
+    it 'returns true if there are downard diagonally consecutive player symbols' do
       board = Board.new
-      # refactor below later
+
+      board.layout[:A] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', 'X', '*', '*']
+      board.layout[:C] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:D] = ['O', 'X', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'O', '*', '*', '*']
+      board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
+
+      expect(board.diagonal_win?('X')).to eq(true)
+    end    
+
+    it 'returns true if there are upward diagonally consecutive computer symbols' do
+      board = Board.new
+
       board.layout[:A] = ['O', 'X', '*', '*', '*', '*']
       board.layout[:B] = ['O', 'X', '*', '*', '*', '*']
       board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
@@ -245,29 +259,154 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'X', 'O', 'O', '*', '*']
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
-      expect(board.diagonal_up_win?('O')).to eq(true)
+      expect(board.diagonal_win?('O')).to eq(true)
+    end
+
+    it 'returns true if there are downward diagonally consecutive computer symbols' do
+      board = Board.new
+
+      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
+
+      expect(board.diagonal_win?('O')).to eq(true)
     end
   end
 
-  describe '#diagonal_up_arrays' do
+  describe '#diagonal_arrays' do
     it 'builds an array of arrays of all four consecutive diagonal spaces' do
       board = Board.new
-      board.layout[:A] = ['a1','a2','a3','a4','a5','a6']
-      board.layout[:B] = ['b1','b2','b3','b4','b5','b6']
-      board.layout[:C] = ['c1','c2','c3','c4','c5','c6']
-      board.layout[:D] = ['d1','d2','d3','d4','d5','d6']
-      board.layout[:E] = ['e1','e2','e3','e4','e5','e6']
-      board.layout[:F] = ['f1','f2','f3','f4','f5','f6']
-      board.layout[:G] = ['g1','g2','g3','g4','g5','g6']
+      board.layout[:A] = ['a0','a1','a2','a3','a4','a5']
+      board.layout[:B] = ['b0','b1','b2','b3','b4','b5']
+      board.layout[:C] = ['c0','c1','c2','c3','c4','c5']
+      board.layout[:D] = ['d0','d1','d2','d3','d4','d5']
+      board.layout[:E] = ['e0','e1','e2','e3','e4','e5']
+      board.layout[:F] = ['f0','f1','f2','f3','f4','f5']
+      board.layout[:G] = ['g0','g1','g2','g3','g4','g5']
 
-      expect(board.diagonal_up_arrays).to be_an(Array)
-      expect(board.diagonal_up_arrays).to all(be_an(Array))
-      expect(board.diagonal_up_arrays).to eq([['a1', 'b2', 'c3', 'd4'], ['b1', 'c2', 'd3', 'e4'],
-                                              ['c1', 'd2', 'e3', 'f4'], ['d1', 'e2', 'f3', 'g4'],
-                                              ['a2', 'b3', 'c4', 'd5'], ['b2', 'c3', 'd4', 'e5'],
-                                              ['c2', 'd3', 'e4', 'f5'], ['d2', 'e3', 'f4', 'g5'],
-                                              ['a3', 'b4', 'c5', 'd6'], ['b3', 'c4', 'd5', 'e6'],
-                                              ['c3', 'd4', 'e5', 'f6'], ['d3', 'e4', 'f5', 'g6']])
+      expect(board.diagonal_arrays).to be_an(Array)
+      expect(board.diagonal_arrays).to all(be_an(Array))
+      expect(board.diagonal_arrays).to eq([["a0", "b1", "c2", "d3"], ["a3", "b2", "c1", "d0"], 
+                                           ["b0", "c1", "d2", "e3"], ["b3", "c2", "d1", "e0"], 
+                                           ["c0", "d1", "e2", "f3"], ["c3", "d2", "e1", "f0"], 
+                                           ["d0", "e1", "f2", "g3"], ["d3", "e2", "f1", "g0"], 
+                                           ["a1", "b2", "c3", "d4"], ["a4", "b3", "c2", "d1"], 
+                                           ["b1", "c2", "d3", "e4"], ["b4", "c3", "d2", "e1"], 
+                                           ["c1", "d2", "e3", "f4"], ["c4", "d3", "e2", "f1"], 
+                                           ["d1", "e2", "f3", "g4"], ["d4", "e3", "f2", "g1"], 
+                                           ["a2", "b3", "c4", "d5"], ["a5", "b4", "c3", "d2"], 
+                                           ["b2", "c3", "d4", "e5"], ["b5", "c4", "d3", "e2"], 
+                                           ["c2", "d3", "e4", "f5"], ["c5", "d4", "e3", "f2"], 
+                                           ["d2", "e3", "f4", "g5"], ["d5", "e4", "f3", "g2"]])
+    end
+  end
+
+  describe '#win?' do
+    it 'returns false if on a new Board' do
+      board = Board.new
+
+      expect(board.win?('X')).to eq(false)
+      expect(board.win?('O')).to eq(false)
+    end
+
+    it 'returns false if board is full with no wins' do
+      board = Board.new
+
+      board.layout[:A] = ['X','O','X','O','X','O']
+      board.layout[:B] = ['O','X','O','X','O','X']
+      board.layout[:C] = ['X','O','O','O','X','O']
+      board.layout[:D] = ['O','O','X','O','O','X']
+      board.layout[:E] = ['X','O','X','O','X','O']
+      board.layout[:F] = ['O','X','O','X','O','X']
+      board.layout[:G] = ['X','O','X','O','X','O']
+    end
+
+    it 'returns true if player wins with vertical' do
+      board = Board.new
+
+      board.layout[:A] = ['*','*','*','*','*','*']
+      board.layout[:B] = ['*','*','*','*','*','*']
+      board.layout[:C] = ['*','*','*','*','*','*']
+      board.layout[:D] = ['*','*','*','*','*','*']
+      board.layout[:E] = ['*','*','*','*','*','*']
+      board.layout[:F] = ['O','O','O','*','*','*']
+      board.layout[:G] = ['X','X','X','X','*','*']
+
+      expect(board.win?('X')).to eq(true)
+    end
+
+    it 'returns true if computer wins with vertical' do
+      board = Board.new
+
+      board.layout[:A] = ['X','*','*','*','*','*']
+      board.layout[:B] = ['O','O','O','O','*','*']
+      board.layout[:C] = ['X','*','*','*','*','*']
+      board.layout[:D] = ['X','*','*','*','*','*']
+      board.layout[:E] = ['X','*','*','*','*','*']
+      board.layout[:F] = ['*','*','*','*','*','*']
+      board.layout[:G] = ['*','*','*','*','*','*']
+
+      expect(board.win?('O')).to eq(true)
+    end
+
+    it 'returns true if player wins with horizontal' do
+      board = Board.new
+
+      board.layout[:A] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'X', 'X', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
+
+      expect(board.win?('X')).to eq(true)
+    end
+
+    it 'returns true if computer wins with horizontal' do
+      board = Board.new
+
+      board.layout[:A] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['X', 'X', 'X', '*', '*', '*']
+      board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
+
+      expect(board.win?('O')).to eq(true)
+    end
+
+    it 'returns true if player wins diagonally' do
+      board = Board.new
+
+      board.layout[:A] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:B] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:C] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:D] = ['X', '*', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
+
+      expect(board.win?('X')).to eq(true)
+    end
+
+    it 'returns true if computer wins diagonally' do
+      board = Board.new
+
+      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
+
+      expect(board.win?('O')).to eq(true)
     end
   end
 end

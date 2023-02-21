@@ -40,10 +40,14 @@ class Board
     !@layout.values.flatten.include?('*')
   end
 
+  def win?(symbol)
+    vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
+  end
+
   def vertical_win?(symbol)
     win = false
     @layout.values.each do |column_array|
-      win = true if column_array.each_cons(4).any? {|symbol| symbol.uniq.size == 1}
+      win = true if column_array.each_cons(4).any? { |element, next_element| element == symbol && next_element == symbol }
     end
     win
   end
@@ -56,25 +60,28 @@ class Board
     win
   end
 
-  def diagonal_up_win?(symbol)
+  def diagonal_win?(symbol)
     win = false
-    diagonal_up_arrays.each do |diagonal|
+    diagonal_arrays.each do |diagonal|
       win = true if diagonal.all?(symbol)
     end
     win
   end
 
-  def diagonal_up_arrays
-    diagonal_up_arrays = []
+  def diagonal_arrays
+    diagonal_arrays = []
     for move_up in 0..2
       for move_right in 0..3
-        single_diagonal = []
-        for start_index in 0..3
-          single_diagonal << @layout[@layout.keys[start_index + move_right]][start_index + move_up]
+        up_diagonal = [] 
+        down_diagonal = []
+        for key_index in 0..3
+          up_diagonal << @layout[@layout.keys[key_index + move_right]][key_index + move_up]
+          down_diagonal << @layout[@layout.keys[key_index + move_right]][-key_index + 3 + move_up]
         end
-        diagonal_up_arrays << single_diagonal
+        diagonal_arrays << up_diagonal
+        diagonal_arrays << down_diagonal
       end
     end
-    diagonal_up_arrays
+    diagonal_arrays
   end
 end
