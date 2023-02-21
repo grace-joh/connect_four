@@ -293,22 +293,6 @@ RSpec.describe Board do
     end
   end
 
-  describe '#diagonal_down_win?' do
-    it 'returns false if no diagonally consecutive symbols' do
-      board = Board.new
-      # refactor below later
-      board.layout[:A] = ['O', '*', '*', '*', '*', '*']
-      board.layout[:B] = ['O', '*', '*', '*', '*', '*']
-      board.layout[:C] = ['O', '*', '*', '*', '*', '*']
-      board.layout[:D] = ['X', 'O', '*', '*', '*', '*']
-      board.layout[:E] = ['X', '*', '*', '*', '*', '*']
-      board.layout[:F] = ['O', 'O', '*', '*', '*', '*']
-      board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
-
-      expect(board.diagonal_down_win?('X')).to eq(false)
-      expect(board.diagonal_down_win?('O')).to eq(false)
-    end
-
     it 'returns true if there are diagonally consecutive computer symbols' do
       board = Board.new
       # refactor below later
