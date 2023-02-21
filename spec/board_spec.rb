@@ -261,9 +261,22 @@ RSpec.describe Board do
 
       expect(board.diagonal_up_win?('O')).to eq(true)
     end
+
+    it 'returns true if there are downward diagonally consecutive computer symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
+
+      expect(board.diagonal_down_win?('O')).to eq(true)
+    end
   end
-
-
+  end
 
   describe '#diagonal_arrays' do
     it 'builds an array of arrays of all four consecutive diagonal spaces' do
@@ -290,21 +303,6 @@ RSpec.describe Board do
                                               ["b2", "c3", "d4", "e5"], ["b5", "c4", "d3", "e2"], 
                                               ["c2", "d3", "e4", "f5"], ["c5", "d4", "e3", "f2"], 
                                               ["d2", "e3", "f4", "g5"], ["d5", "e4", "f3", "g2"]])
-    end
-  end
-
-    it 'returns true if there are diagonally consecutive computer symbols' do
-      board = Board.new
-      # refactor below later
-      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
-      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
-      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
-      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
-      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
-      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
-      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
-
-      expect(board.diagonal_down_win?('O')).to eq(true)
     end
   end
 end
