@@ -270,4 +270,20 @@ RSpec.describe Board do
                                               ['c3', 'd4', 'e5', 'f6'], ['d3', 'e4', 'f5', 'g6']])
     end
   end
+
+  describe '#diagonal_down_win?' do
+    it 'returns false if there is no diagonally consecutive symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:B] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:C] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:D] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', '*', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
+
+      expect(board.diagonal_down_win?('X')).to eq(false)
+      expect(board.diagonal_down_win?('O')).to eq(false)
+    end
 end
