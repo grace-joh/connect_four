@@ -19,7 +19,7 @@ class Turn
         break if valid?(input)
       end
     else
-      input = player.input
+      input = player.input until @board.column_free?(input)
     end
     update_board(player, input)
     system('clear')
