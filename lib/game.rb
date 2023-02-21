@@ -11,4 +11,42 @@ class Game
   def players
     [@player1, @player2]
   end
+
+  def play
+    loop do
+      output_start
+      output_welcome
+      take_turns
+      output_winner
+      output_play_again
+    end
+  end
+
+  def output_start
+
+  end
+
+  def output_goodbye
+
+  end
+
+  def output_welcome
+
+  end
+
+  def take_turns
+
+  end
+
+  def output_turn(player)
+
+  end
+
+  def output_winner
+
+  end
+
+  def output_play_again
+    
+  end
 end
