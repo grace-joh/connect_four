@@ -290,13 +290,13 @@ RSpec.describe Board do
     it 'returns true if there are diagonally consecutive player symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
-      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
-      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
-      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
-      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
-      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
-      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:A] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', 'X', '*', '*']
+      board.layout[:C] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:D] = ['O', 'X', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'O', '*', '*', '*']
+      board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
 
       expect(board.diagonal_down_win?('O')).to eq(true)
     end
@@ -311,7 +311,7 @@ RSpec.describe Board do
       board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
       board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
       board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
-      
+
       expect(board.diagonal_down_win?('O')).to eq(true)
     end
   end
