@@ -1,12 +1,11 @@
 class Game
-  attr_reader :player1, :player2, :turn
-  attr_accessor :winner
+  attr_reader :player1, :player2, :turn, :winner
 
   def initialize
     @player1 = Player.new
     @player2 = Computer.new
     @turn = Turn.new
-    @winner = @turn.winner
+    @winner = nil
   end
 
   def players
@@ -50,6 +49,7 @@ class Game
       players.each do |player|
         output_turn(player)
         turn.move(player)
+        @winner = @turn.winner
         break unless @winner.nil?
       end
       break if @turn.board.full? || !@winner.nil?
