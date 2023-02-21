@@ -203,4 +203,71 @@ RSpec.describe Board do
       expect(board.horizontal_win?('O')).to eq(false)
     end
   end
+
+  describe '#diagonal_up_win?' do
+    it 'returns false if there is no diagonally consecutive symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:B] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:C] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:D] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', '*', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
+
+      expect(board.diagonal_up_win?('X')).to eq(false)
+      expect(board.diagonal_up_win?('O')).to eq(false)
+    end
+
+    it 'returns true if there is are diagonally consecutive player symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:B] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:C] = ['O', '*', '*', '*', '*', '*']
+      board.layout[:D] = ['X', '*', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', '*', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
+
+      expect(board.diagonal_up_win?('X')).to eq(true)
+    end
+
+    it 'returns true if there is are diagonally consecutive computer symbols' do
+      board = Board.new
+      # refactor below later
+      board.layout[:A] = ['O', 'X', '*', '*', '*', '*']
+      board.layout[:B] = ['O', 'X', '*', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['X', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:F] = ['O', 'X', 'O', 'O', '*', '*']
+      board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
+
+      expect(board.diagonal_up_win?('O')).to eq(true)
+    end
+  end
+
+  describe '#diagonal_up_arrays' do
+    it 'builds an array of arrays of all four consecutive diagonal spaces' do
+      board = Board.new
+      board.layout[:A] = ['a1','a2','a3','a4','a5','a6']
+      board.layout[:B] = ['b1','b2','b3','b4','b5','b6']
+      board.layout[:C] = ['c1','c2','c3','c4','c5','c6']
+      board.layout[:D] = ['d1','d2','d3','d4','d5','d6']
+      board.layout[:E] = ['e1','e2','e3','e4','e5','e6']
+      board.layout[:F] = ['f1','f2','f3','f4','f5','f6']
+      board.layout[:G] = ['g1','g2','g3','g4','g5','g6']
+
+      expect(board.diagonal_up_arrays).to be_an(Array)
+      expect(board.diagonal_up_arrays).to all(be_an(Array))
+      expect(board.diagonal_up_arrays).to eq([['a1', 'b2', 'c3', 'd4'], ['b1', 'c2', 'd3', 'e4'],
+                                              ['c1', 'd2', 'e3', 'f4'], ['d1', 'e2', 'f3', 'g4'],
+                                              ['a2', 'b3', 'c4', 'd5'], ['b2', 'c3', 'd4', 'e5'],
+                                              ['c2', 'd3', 'e4', 'f5'], ['d2', 'e3', 'f4', 'g5'],
+                                              ['a3', 'b4', 'c5', 'd6'], ['b3', 'c4', 'd5', 'e6'],
+                                              ['c3', 'd4', 'e5', 'f6'], ['d3', 'e4', 'f5', 'g6']])
+    end
+  end
 end
