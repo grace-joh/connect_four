@@ -298,7 +298,7 @@ RSpec.describe Board do
       board.layout[:F] = ['O', 'O', 'O', '*', '*', '*']
       board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
 
-      expect(board.diagonal_down_win?('O')).to eq(true)
+      expect(board.diagonal_down_win?('X')).to eq(true)
     end
 
     it 'returns true if there are diagonally consecutive computer symbols' do
