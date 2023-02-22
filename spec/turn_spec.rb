@@ -21,7 +21,7 @@ RSpec.describe Turn do
 
   describe '#update_board' do
     it "adds  the player's piece to the column the player chooses" do
-      player = Player.new
+      player = Player.new('X')
       turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
@@ -30,8 +30,8 @@ RSpec.describe Turn do
     end
 
     it 'adds a second piece to the column the player chooses' do
-      player = Player.new
-      computer = Computer.new
+      player = Player.new('X')
+      computer = Computer.new('O')
       turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
@@ -42,8 +42,8 @@ RSpec.describe Turn do
     end
 
     it 'can add a piece to another column the player chooses' do
-      user = Player.new
-      computer = Computer.new
+      user = Player.new('X')
+      computer = Computer.new('O')
       turn = Turn.new
       input = 'A'
       turn.update_board(user, input)
@@ -59,7 +59,7 @@ RSpec.describe Turn do
 
   describe '#move' do
     it 'winner is nil if move does not win' do
-      user = Player.new
+      user = Player.new('X')
       computer = Computer.new
       turn = Turn.new
       turn.move(user)
@@ -69,7 +69,7 @@ RSpec.describe Turn do
     end
 
     it 'player is the winner if players move wins' do
-      user = Player.new
+      user = Player.new('X')
       turn = Turn.new
       turn.board.layout[:B] = ['X','*','*','*','*','*']
       turn.board.layout[:C] = ['X','*','*','*','*','*']
@@ -80,7 +80,7 @@ RSpec.describe Turn do
     end
 
     it 'computer is the winner if computers move wins' do
-      computer = Computer.new
+      computer = Computer.new('O')
       turn = Turn.new
       turn.board.layout[:A] = ['O','O','O','*','*','*']
       turn.board.layout[:B] = ['O','O','O','*','*','*']
