@@ -1,7 +1,7 @@
 class Player 
   attr_reader :symbol
 
-  def initialize
-    @symbol = 'X'
+  def initialize(symbol)
+    @symbol = symbol
   end
 end
