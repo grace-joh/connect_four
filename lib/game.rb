@@ -34,8 +34,10 @@ class Game
   end
 
   def output_goodbye
+    puts 'See ya later!'
+    sleep 5
     system('clear')
-    abort('Bye!')
+    abort
   end
 
   def output_welcome
