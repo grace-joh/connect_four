@@ -2,8 +2,8 @@ class Game
   attr_reader :player1, :player2, :turn, :winner
 
   def initialize
-    @player1 = Player.new
-    @player2 = Computer.new
+    @player1 = Player.new('X')
+    @player2 = Computer.new('O')
     @turn = Turn.new
     @winner = nil
   end
@@ -59,7 +59,7 @@ class Game
   end
 
   def output_turn(player)
-    if player.instance_of?(Player)
+    if player == @player1
       puts "\nIt's your turn."
       puts 'Choose a column from A to G'
     else
@@ -69,9 +69,9 @@ class Game
   end
 
   def output_winner
-    if winner.instance_of?(Player)
+    if @winner == @player1
       puts 'You win!!!'
-    elsif winner.instance_of?(Computer)
+    elsif @winner == @player2
       puts 'You lose :('
     else
       puts 'This game was a draw.'
