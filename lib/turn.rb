@@ -1,5 +1,6 @@
 class Turn
-  attr_reader :board, :winner
+  attr_reader :board
+  attr_accessor :winner
 
   def initialize
     @board = Board.new
@@ -34,9 +35,9 @@ class Turn
   def valid?(input)
     valid = false
     if !('A'..'G').to_a.include?(input)
-      puts 'invalid input! try again: A-G'
+      puts 'Invalid input! Try again: A-G'
     elsif !@board.column_free?(input)
-      puts "Column #{input} is full! try again"
+      puts "Column #{input} is full! Try again"
     else
       valid = true
     end

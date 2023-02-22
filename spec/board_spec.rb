@@ -430,4 +430,20 @@ RSpec.describe Board do
       expect(board.win?('X')).to eq(false)
     end
   end
+
+  describe '#reset' do
+    it 'resets a board that has been played on' do
+      board = Board.new
+      board.layout[:A] = ['X', 'X', 'X', 'O', '*', '*']
+      board.layout[:B] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:C] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:D] = ['O', 'O', '*', '*', '*', '*']
+      board.layout[:E] = ['X', 'X', 'O', '*', '*', '*']
+      board.layout[:F] = ['O', 'O', 'X', '*', '*', '*']
+      board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
+      board.reset
+
+      expect(board.layout.values.flatten).to all(eq('*'))
+    end
+  end
 end

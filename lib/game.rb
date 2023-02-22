@@ -13,6 +13,7 @@ class Game
   end
 
   def play
+    system('clear')
     loop do
       output_start
       output_welcome
@@ -23,7 +24,6 @@ class Game
   end
 
   def output_start
-    system('clear')
     puts File.read('connect_four.txt')
     loop do
       puts 'Enter S to start or Q to quit.'
@@ -34,13 +34,15 @@ class Game
   end
 
   def output_goodbye
+    puts 'See ya later!'
+    sleep 5
     system('clear')
-    abort('Bye!')
+    abort
   end
 
   def output_welcome
     system('clear')
-    puts 'Welcome to Connect 4!'
+    puts "Welcome to Connect 4!\n\n"
     @turn.board.print_layout
   end
 
@@ -58,11 +60,11 @@ class Game
 
   def output_turn(player)
     if player.instance_of?(Player)
-      puts "It's your turn."
+      puts "\nIt's your turn."
       puts 'Choose a column from A to G'
     else
-      puts "It's the computer's turn."
-      sleep 2
+      puts "\nIt's the computer's turn."
+      sleep 3
     end
   end
 
@@ -74,6 +76,10 @@ class Game
     else
       puts 'This game was a draw.'
     end
+    sleep 5
+    system('clear')
+    @turn.board.reset
+    @turn.winner = nil
   end
 
   def output_play_again

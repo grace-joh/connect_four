@@ -84,4 +84,8 @@ class Board
     end
     diagonal_arrays
   end
+
+  def reset
+    layout.keys.map { |letter| layout[letter] = ['*', '*', '*', '*', '*', '*'] }
+  end
 end
