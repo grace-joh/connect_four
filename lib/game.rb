@@ -64,7 +64,7 @@ class Game
       puts 'Choose a column from A to G'
     else
       puts "\nIt's the computer's turn."
-      sleep 2
+      sleep 3
     end
   end
 
@@ -79,6 +79,7 @@ class Game
     sleep 5
     system('clear')
     @turn.board.reset
+    @turn.winner = nil
   end
 
   def output_play_again
