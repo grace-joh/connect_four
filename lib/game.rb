@@ -78,6 +78,7 @@ class Game
     end
     sleep 5
     system('clear')
+    @turn.board.reset
   end
 
   def output_play_again
