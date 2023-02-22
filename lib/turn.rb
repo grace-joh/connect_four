@@ -1,5 +1,6 @@
 class Turn
-  attr_reader :board, :winner
+  attr_reader :board
+  attr_accessor :winner
 
   def initialize
     @board = Board.new
