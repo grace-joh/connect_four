@@ -1,8 +1,10 @@
-class Computer
+require './player'
+
+class Computer < Player
   attr_reader :symbol
 
-  def initialize
-    @symbol = 'O'
+  def initialize(symbol)
+    super(symbol)
   end
 
   def input
