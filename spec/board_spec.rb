@@ -328,10 +328,10 @@ RSpec.describe Board do
     it 'returns false if board is full with no wins' do
       board = Board.new
 
-      board.layout[:A] = ['X','O','X','O','X','O']
+      board.layout[:A] = ['X','O','X','X','X','O']
       board.layout[:B] = ['O','X','O','X','O','X']
       board.layout[:C] = ['X','O','O','O','X','O']
-      board.layout[:D] = ['O','O','X','O','O','X']
+      board.layout[:D] = ['X','O','X','O','X','O']
       board.layout[:E] = ['X','O','X','O','X','O']
       board.layout[:F] = ['O','X','O','X','O','X']
       board.layout[:G] = ['X','O','X','O','X','O']
