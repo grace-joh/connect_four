@@ -76,6 +76,7 @@ class Game
     else
       puts 'This game was a draw.'
     end
+    sleep 5
   end
 
   def output_play_again
