@@ -42,7 +42,7 @@ class Game
 
   def output_welcome
     system('clear')
-    puts 'Welcome to Connect 4!'
+    puts "Welcome to Connect 4!\n\n"
     @turn.board.print_layout
   end
 
@@ -60,10 +60,10 @@ class Game
 
   def output_turn(player)
     if player.instance_of?(Player)
-      puts "It's your turn."
+      puts "\nIt's your turn."
       puts 'Choose a column from A to G'
     else
-      puts "It's the computer's turn."
+      puts "\nIt's the computer's turn."
       sleep 2
     end
   end
