@@ -1,5 +1,4 @@
 require 'spec_helper'
-# require './player'
 
 RSpec.describe Computer do
   describe '#initialize' do
