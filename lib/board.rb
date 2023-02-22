@@ -47,7 +47,7 @@ class Board
   def vertical_win?(symbol)
     win = false
     @layout.values.each do |column_array|
-      win = true if column_array.each_cons(4).any? { |element, next_element| element == symbol && next_element == symbol }
+      win = true if column_array.each_cons(4).any? { |a, b, c, d| a == symbol && b == symbol && c == symbol && d == symbol }
     end
     win
   end
@@ -55,7 +55,7 @@ class Board
   def horizontal_win?(symbol)
     win = false
     rows.each do |row|
-      win = true if row.each_cons(4).any? { |element, next_element| element == symbol && next_element == symbol }
+      win = true if row.each_cons(4).any? { |a, b, c, d| a == symbol && b == symbol && c == symbol && d == symbol }
     end
     win
   end

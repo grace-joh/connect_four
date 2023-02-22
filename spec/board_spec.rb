@@ -101,20 +101,22 @@ RSpec.describe Board do
       board.layout[:G] = ['X','X','X','X','*','*']
 
       expect(board.vertical_win?('X')).to eq(true)
+      expect(board.vertical_win?('O')).to eq(false)
     end
 
     it 'returns false if column does not have four X symbols' do
       board = Board.new
       # refactor below later
       board.layout[:A] = ['X','O','X','O','X','O']
-      board.layout[:B] = ['O','X','O','X','O','X']
-      board.layout[:C] = ['X','O','X','O','X','O']
+      board.layout[:B] = ['X','X','O','X','O','X']
+      board.layout[:C] = ['X','O','O','O','X','O']
       board.layout[:D] = ['O','X','O','X','O','X']
-      board.layout[:E] = ['X','O','X','O','X','O']
+      board.layout[:E] = ['O','O','X','O','X','O']
       board.layout[:F] = ['O','X','O','X','O','X']
-      board.layout[:G] = ['X','O','X','O','X','O']
+      board.layout[:G] = ['X','X','X','O','X','O']
 
       expect(board.vertical_win?('X')).to eq(false)
+      expect(board.vertical_win?('O')).to eq(false)
     end
 
     it 'returns true if column has four consecutive O symbols' do
@@ -129,13 +131,14 @@ RSpec.describe Board do
       board.layout[:G] = ['O','O','O','O','*','*']
 
       expect(board.vertical_win?('O')).to eq(true)
+      expect(board.vertical_win?('X')).to eq(false)
     end
 
     it 'returns false if column does not have four consecutive O symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X','O','X','O','X','O']
-      board.layout[:B] = ['O','X','O','X','O','X']
+      board.layout[:A] = ['X','O','X','X','X','X']
+      board.layout[:B] = ['O','O','O','X','O','X']
       board.layout[:C] = ['X','O','X','O','X','O']
       board.layout[:D] = ['O','X','O','X','O','X']
       board.layout[:E] = ['X','O','X','O','X','O']
@@ -143,6 +146,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X','O','X','O','X','O']
 
       expect(board.vertical_win?('O')).to eq(false)
+      expect(board.vertical_win?('X')).to eq(true)
     end
   end
 
@@ -159,20 +163,22 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
       expect(board.horizontal_win?('X')).to eq(true)
+      expect(board.horizontal_win?('O')).to eq(false)
     end
 
     it 'returns false if row does not have four X symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X', 'O', 'X', 'O', 'X', '*']
-      board.layout[:B] = ['O', 'X', 'O', 'X', 'O', '*']
-      board.layout[:C] = ['X', 'O', 'X', 'O', 'X', '*']
+      board.layout[:A] = ['X', 'O', 'O', 'O', 'X', '*']
+      board.layout[:B] = ['X', 'X', 'O', 'X', 'O', '*']
+      board.layout[:C] = ['X', 'O', 'O', 'O', 'X', '*']
       board.layout[:D] = ['O', 'X', 'O', 'X', 'O', '*']
       board.layout[:E] = ['X', 'O', 'X', 'O', 'X', '*']
-      board.layout[:F] = ['O', 'X', 'O', 'X', 'O', '*']
-      board.layout[:G] = ['X', 'O', 'X', 'O', 'X', '*']
+      board.layout[:F] = ['X', 'X', 'O', 'X', 'O', '*']
+      board.layout[:G] = ['X', 'X', 'X', 'X', 'X', '*']
 
       expect(board.horizontal_win?('X')).to eq(false)
+      expect(board.horizontal_win?('O')).to eq(true)
     end
 
     it 'returns true if row has four consecutive O symbols' do
@@ -187,20 +193,22 @@ RSpec.describe Board do
       board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
 
       expect(board.horizontal_win?('O')).to eq(true)
+      expect(board.horizontal_win?('X')).to eq(false)
     end
 
     it 'returns false if row does not have four consecutive O symbols' do
       board = Board.new
       # refactor below later
-      board.layout[:A] = ['X', 'O', 'X', 'O', 'X', 'O']
-      board.layout[:B] = ['O', 'X', 'O', 'X', 'O', 'X']
+      board.layout[:A] = ['O', 'O', 'X', 'O', 'X', 'O']
+      board.layout[:B] = ['X', 'X', 'O', 'X', 'O', 'X']
       board.layout[:C] = ['X', 'O', 'X', 'O', 'X', 'O']
-      board.layout[:D] = ['O', 'X', 'O', 'X', 'O', 'X']
+      board.layout[:D] = ['X', 'X', 'O', 'X', 'O', 'X']
       board.layout[:E] = ['X', 'O', 'X', 'O', 'X', 'O']
       board.layout[:F] = ['O', 'X', 'O', 'X', 'O', 'X']
       board.layout[:G] = ['X', 'O', 'X', 'O', 'X', 'O']
 
       expect(board.horizontal_win?('O')).to eq(false)
+      expect(board.horizontal_win?('X')).to eq(true)
     end
   end
 
@@ -232,6 +240,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
 
       expect(board.diagonal_win?('X')).to eq(true)
+      expect(board.diagonal_win?('O')).to eq(false)
     end
 
     it 'returns true if there are downard diagonally consecutive player symbols' do
@@ -246,6 +255,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'O', '*', '*', '*', '*']
 
       expect(board.diagonal_win?('X')).to eq(true)
+      expect(board.diagonal_win?('O')).to eq(false)
     end    
 
     it 'returns true if there are upward diagonally consecutive computer symbols' do
@@ -260,6 +270,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'X', '*', '*', '*']
 
       expect(board.diagonal_win?('O')).to eq(true)
+      expect(board.diagonal_win?('X')).to eq(false)
     end
 
     it 'returns true if there are downward diagonally consecutive computer symbols' do
@@ -274,6 +285,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
 
       expect(board.diagonal_win?('O')).to eq(true)
+      expect(board.diagonal_win?('X')).to eq(false)
     end
   end
 
@@ -316,13 +328,16 @@ RSpec.describe Board do
     it 'returns false if board is full with no wins' do
       board = Board.new
 
-      board.layout[:A] = ['X','O','X','O','X','O']
+      board.layout[:A] = ['X','O','X','X','X','O']
       board.layout[:B] = ['O','X','O','X','O','X']
       board.layout[:C] = ['X','O','O','O','X','O']
-      board.layout[:D] = ['O','O','X','O','O','X']
+      board.layout[:D] = ['X','O','X','O','X','O']
       board.layout[:E] = ['X','O','X','O','X','O']
       board.layout[:F] = ['O','X','O','X','O','X']
       board.layout[:G] = ['X','O','X','O','X','O']
+
+      expect(board.win?('X')).to eq(false)
+      expect(board.win?('O')).to eq(false)
     end
 
     it 'returns true if player wins with vertical' do
@@ -337,6 +352,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X','X','X','X','*','*']
 
       expect(board.win?('X')).to eq(true)
+      expect(board.win?('O')).to eq(false)
     end
 
     it 'returns true if computer wins with vertical' do
@@ -351,6 +367,7 @@ RSpec.describe Board do
       board.layout[:G] = ['*','*','*','*','*','*']
 
       expect(board.win?('O')).to eq(true)
+      expect(board.win?('X')).to eq(false)
     end
 
     it 'returns true if player wins with horizontal' do
@@ -365,6 +382,7 @@ RSpec.describe Board do
       board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
 
       expect(board.win?('X')).to eq(true)
+      expect(board.win?('O')).to eq(false)
     end
 
     it 'returns true if computer wins with horizontal' do
@@ -379,6 +397,7 @@ RSpec.describe Board do
       board.layout[:G] = ['O', 'X', '*', '*', '*', '*']
 
       expect(board.win?('O')).to eq(true)
+      expect(board.win?('X')).to eq(false)
     end
 
     it 'returns true if player wins diagonally' do
@@ -393,6 +412,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'O', 'X', '*', '*']
 
       expect(board.win?('X')).to eq(true)
+      expect(board.win?('O')).to eq(false)
     end
 
     it 'returns true if computer wins diagonally' do
@@ -407,6 +427,7 @@ RSpec.describe Board do
       board.layout[:G] = ['X', 'X', 'O', '*', '*', '*']
 
       expect(board.win?('O')).to eq(true)
+      expect(board.win?('X')).to eq(false)
     end
   end
 end
