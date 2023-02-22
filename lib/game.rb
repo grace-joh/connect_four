@@ -13,6 +13,7 @@ class Game
   end
 
   def play
+    system('clear')
     loop do
       output_start
       output_welcome
@@ -23,7 +24,6 @@ class Game
   end
 
   def output_start
-    system('clear')
     puts File.read('connect_four.txt')
     loop do
       puts 'Enter S to start or Q to quit.'
@@ -77,6 +77,7 @@ class Game
       puts 'This game was a draw.'
     end
     sleep 5
+    system('clear')
   end
 
   def output_play_again
