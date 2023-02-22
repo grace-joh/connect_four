@@ -15,6 +15,12 @@ RSpec.describe Computer do
       expect(computer2).to be_a(Computer)
       expect(computer2.symbol).to eq('O')
     end
+
+    it 'inherits behavior from Player' do
+      computer = Computer.new('O')
+
+      expect(Computer.superclass).to eq(Player)
+    end
   end
 
   describe '#input' do
@@ -26,12 +32,3 @@ RSpec.describe Computer do
       expect(('H'..'Z').to_a).not_to include(computer.input)
     end
   end
-
-  describe '#inherit' do
-    it 'inherits behavior from Player' do
-      computer = Computer.new('O')
-
-      expect(Computer.superclass).to eq(Player)
-    end
-  end
-end
