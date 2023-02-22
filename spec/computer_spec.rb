@@ -32,3 +32,4 @@ RSpec.describe Computer do
       expect(('H'..'Z').to_a).not_to include(computer.input)
     end
   end
+end
