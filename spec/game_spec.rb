@@ -23,17 +23,6 @@ RSpec.describe Game do
     end
   end
 
-  # describe '#play' do
-  #   it 'runs the game' do
-  #   end
-  # end
-
-  # describe '#output_start' do
-  #   it 'outputs game title and instructions to start' do
-  #     expect { @game.output_start }.to output(' ').to_stdout
-  #   end
-  # end
-
   describe '#output_goodbye' do
     it 'says bye' do
       expect { @game.output_goodbye }.to output('Bye!').to_stdout
@@ -42,22 +31,17 @@ RSpec.describe Game do
 
   describe '#output_welcome' do
     it 'says welcome and prints an empty board' do
-      expect { @game.output_welcome }.to output("Welcome to Connect 4!\nA B C D E F G\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n").to_stdout
+      expect { @game.output_welcome }.to output("Welcome to Connect 4!\n\nA B C D E F G\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n* * * * * * *\n").to_stdout
     end
   end
 
-  # describe '#take_turns' do
-  #   it 'loops the players to take turns until there is a game winner' do
-  #   end
-  # end
-
   describe '#output_turn' do
     it 'alerts the user that it is their' do
-      expect { @game.output_turn(@game.players.first) }.to output("It's your turn.\nChoose a column from A to G\n").to_stdout
+      expect { @game.output_turn(@game.players.first) }.to output("\nIt's your turn.\nChoose a column from A to G\n").to_stdout
     end
 
     it 'alerts the user that it is the computers turn' do
-      expect { @game.output_turn(@game.players.last) }.to output("It's the computer's turn.\n").to_stdout
+      expect { @game.output_turn(@game.players.last) }.to output("\nIt's the computer's turn.\n").to_stdout
     end
   end
 
