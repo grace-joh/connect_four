@@ -1,5 +1,5 @@
 class Game
-  attr_reader :player1, :player2, :tur
+  attr_reader :player1, :player2, :turn
   attr_accessor :winner
 
   def initialize
