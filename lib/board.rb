@@ -13,7 +13,7 @@ class Board
     }
   end
 
-  def rows
+  def create_rows
     rows = [[], [], [], [], [], []]
     @layout.each_value do |column_array|
       column_array.each_with_index do |space, index|
@@ -27,7 +27,7 @@ class Board
     print "#{@layout.keys.join(' ')}\n"
     index = 5
     while index >= 0
-      print "#{rows[index].join(' ')}\n".lstrip
+      print "#{create_rows[index].join(' ')}\n".lstrip
       index -= 1
     end
   end
@@ -38,51 +38,6 @@ class Board
 
   def full?
     !@layout.values.flatten.include?('*')
-  end
-
-  def win?(symbol)
-    vertical_win?(symbol) || horizontal_win?(symbol) || diagonal_win?(symbol)
-  end
-
-  def vertical_win?(symbol)
-    win = false
-    @layout.values.each do |column_array|
-      win = true if column_array.each_cons(4).any? { |a, b, c, d| a == symbol && b == symbol && c == symbol && d == symbol }
-    end
-    win
-  end
-
-  def horizontal_win?(symbol)
-    win = false
-    rows.each do |row|
-      win = true if row.each_cons(4).any? { |a, b, c, d| a == symbol && b == symbol && c == symbol && d == symbol }
-    end
-    win
-  end
-
-  def diagonal_win?(symbol)
-    win = false
-    diagonal_arrays.each do |diagonal|
-      win = true if diagonal.all?(symbol)
-    end
-    win
-  end
-
-  def diagonal_arrays
-    diagonal_arrays = []
-    for move_up in 0..2
-      for move_right in 0..3
-        up_diagonal = [] 
-        down_diagonal = []
-        for key_index in 0..3
-          up_diagonal << @layout[@layout.keys[key_index + move_right]][key_index + move_up]
-          down_diagonal << @layout[@layout.keys[key_index + move_right]][-key_index + 3 + move_up]
-        end
-        diagonal_arrays << up_diagonal
-        diagonal_arrays << down_diagonal
-      end
-    end
-    diagonal_arrays
   end
 
   def reset

@@ -1,10 +1,8 @@
 class Turn
   attr_reader :board
-  attr_accessor :winner
 
   def initialize
     @board = Board.new
-    @winner = nil
   end
 
   def update_board(player, input)
@@ -17,7 +15,6 @@ class Turn
     update_board(player, input)
     system('clear')
     @board.print_layout
-    @winner = player if @board.win?(player.symbol)
   end
 
   def find_valid_space(player)
