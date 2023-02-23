@@ -33,7 +33,7 @@ RSpec.describe Board do
   describe '#column_free?' do
     it 'checks if column has available spaces' do
       board = Board.new
-      computer = Computer.new
+      computer = Computer.new('O')
       input = computer.input
 
       expect(board.column_free?(input)).to eq(true)
