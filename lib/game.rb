@@ -50,7 +50,7 @@ class Game
     loop do
       players.each do |player|
         output_turn(player)
-        turn.move(player)
+        @turn.move(player)
         @winner = player if win?(player.symbol)
         break unless @winner.nil?
       end
