@@ -1,4 +1,4 @@
-require './player'
+require './lib/player'
 
 class Computer < Player
   attr_reader :symbol
