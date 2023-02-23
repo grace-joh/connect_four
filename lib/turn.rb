@@ -13,23 +13,17 @@ class Turn
   end
 
   def move(player)
-    input = nil   
-    if player.class != Computer
-      loop do
-        input = $stdin.gets.chomp.upcase
-        break if valid?(input)
-        input
-      end
-    else
-      loop do
-        input = player.input 
-        break input if @board.column_free?(input)
-      end
-    end
+    input = find_valid_space(player)
     update_board(player, input)
     system('clear')
     @board.print_layout
     @winner = player if @board.win?(player.symbol)
+  end
+
+  def find_valid_space(player)
+    input = player.symbol == 'X' ? $stdin.gets.chomp.upcase : player.input
+    find_valid_space(player) unless valid?(input)
+    input
   end
 
   def valid?(input)

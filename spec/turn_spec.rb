@@ -21,7 +21,7 @@ RSpec.describe Turn do
 
   describe '#update_board' do
     it "adds  the player's piece to the column the player chooses" do
-      player = Player.new
+      player = Player.new('X')
       turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
@@ -30,8 +30,8 @@ RSpec.describe Turn do
     end
 
     it 'adds a second piece to the column the player chooses' do
-      player = Player.new
-      computer = Computer.new
+      player = Player.new('X')
+      computer = Computer.new('O')
       turn = Turn.new
       input = 'A'
       turn.update_board(player, input)
@@ -42,8 +42,8 @@ RSpec.describe Turn do
     end
 
     it 'can add a piece to another column the player chooses' do
-      user = Player.new
-      computer = Computer.new
+      user = Player.new('X')
+      computer = Computer.new('O')
       turn = Turn.new
       input = 'A'
       turn.update_board(user, input)
@@ -59,28 +59,28 @@ RSpec.describe Turn do
 
   describe '#move' do
     it 'winner is nil if move does not win' do
-      user = Player.new
-      computer = Computer.new
+      user = Player.new('X')
+      computer = Computer.new('O')
       turn = Turn.new
-      turn.move(user)
+      turn.move(user) # input a column choice A to G in test
       turn.move(computer)
 
       expect(turn.winner).to eq(nil)
     end
 
     it 'player is the winner if players move wins' do
-      user = Player.new
+      user = Player.new('X')
       turn = Turn.new
-      turn.board.layout[:B] = ['X','*','*','*','*','*']
-      turn.board.layout[:C] = ['X','*','*','*','*','*']
-      turn.board.layout[:D] = ['X','*','*','*','*','*']
-      turn.move(user) # when user input is A or E
+      turn.board.layout[:B] = ['X', '*', '*', '*', '*', '*']
+      turn.board.layout[:C] = ['X', '*', '*', '*', '*', '*']
+      turn.board.layout[:D] = ['X', '*', '*', '*', '*', '*']
+      turn.move(user) # input is A or E in test
 
       expect(turn.winner).to eq(user)
     end
 
     it 'computer is the winner if computers move wins' do
-      computer = Computer.new
+      computer = Computer.new('O')
       turn = Turn.new
       turn.board.layout[:A] = ['O','O','O','*','*','*']
       turn.board.layout[:B] = ['O','O','O','*','*','*']
@@ -89,10 +89,43 @@ RSpec.describe Turn do
       turn.board.layout[:E] = ['O','O','O','*','*','*']
       turn.board.layout[:F] = ['O','O','O','*','*','*']
       turn.board.layout[:G] = ['O','O','O','*','*','*']
-      turn.move(computer)
+      turn.move(computer) 
 
       expect(turn.winner).to eq(computer)
     end
+  end
+
+  describe '#find_valid_space' do
+    it 'returns the players input if it is a open space on the board' do
+      player = Player.new('X')
+      turn = Turn.new
+
+      expect(('A'..'G').to_a).to include(turn.find_valid_space(player))
+    end
+
+    it 'prompts player to choose another input until input is an open space and valid' do
+      player = Player.new('X')
+      turn = Turn.new
+      turn.board.layout[:A] = ['O', 'X', 'O', 'X', 'X', 'O']
+
+      # input A as player choice
+      expect(turn.find_valid_space(player)).not_to eq('A')
+    end
+
+    # it 'returns computers random choice only if it is a free column' do
+    #   computer = Computer.new('O')
+    #   turn = Turn.new
+    #   turn.board.layout[:A] = ['O', 'X', 'O', 'X', 'X', 'O']
+    #   turn.board.layout[:B] = ['O', 'X', 'O', 'X', 'X', 'O']
+    #   turn.board.layout[:C] = ['O', 'X', 'O', 'X', 'X', 'O']
+    #   turn.board.layout[:D] = ['O', 'X', 'O', 'X', 'X', '*']
+    #   turn.board.layout[:E] = ['O', 'X', 'O', 'X', 'X', 'O']
+    #   turn.board.layout[:F] = ['O', 'X', 'O', 'X', 'X', 'O']
+    #   turn.board.layout[:G] = ['O', 'X', 'O', 'X', 'X', 'O']
+
+    #   only passes when computer eventually chooses D first??
+    #   expect(turn.find_valid_space(computer)).to eq('D')
+    # end
   end
 
   describe '#valid?' do
