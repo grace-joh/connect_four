@@ -21,8 +21,11 @@ class Turn
   end
 
   def find_valid_space(player)
-    input = player.symbol == 'X' ? $stdin.gets.chomp.upcase : player.input
-    find_valid_space(player) unless valid?(input)
+    input = nil
+    loop do
+      input = player.symbol == 'X' ? $stdin.gets.chomp.upcase : player.input
+      break if valid?(input)
+    end
     input
   end
 
