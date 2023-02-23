@@ -1,5 +1,6 @@
 class Game
-  attr_reader :player1, :player2, :turn, :winner
+  attr_reader :player1, :player2, :tur
+  attr_accessor :winner
 
   def initialize
     @player1 = Player.new('X')
@@ -79,7 +80,7 @@ class Game
     sleep 5
     system('clear')
     @turn.board.reset
-    @turn.winner = nil
+    @winner = nil
   end
 
   def output_play_again
